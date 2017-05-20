@@ -145,9 +145,8 @@ public class FullScannerActivity extends BaseScannerActivity implements MessageD
         String codigo = rawResult.getContents();
         for (Jobs j : misJobs) {
 
-            if (codigo == j.getJobCardNo()) {
-                resultado = (j.getJobCardNo() + "" + j.getProjectName() + "" + j.getDeliveryDate());
-                System.out.println(resultado+" funcionar");
+            if (j.getJobCardNo().contains(codigo)) {
+                resultado = (j.getJobCardNo() + " " + j.getProjectName() + " " + j.getDeliveryDate());
                 break;
             }
         }

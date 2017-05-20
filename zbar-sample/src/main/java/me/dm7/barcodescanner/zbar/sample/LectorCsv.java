@@ -28,7 +28,7 @@ public class LectorCsv {
             String csvLine;
             while ((csvLine = reader.readLine()) != null) {
                 String[] row = csvLine.split(",");
-                jobsList.add(new Jobs(row[4], row[5], row[8]));
+                jobsList.add(new Jobs(row[4], row[5], row[9]));
             }
         } catch (IOException ex) {
             throw new RuntimeException("Error in reading CSV file: " + ex);
