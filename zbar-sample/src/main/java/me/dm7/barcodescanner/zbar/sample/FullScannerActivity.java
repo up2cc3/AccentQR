@@ -29,7 +29,7 @@ public class FullScannerActivity extends BaseScannerActivity implements MessageD
     private ArrayList<Integer> mSelectedIndices;
     private int mCameraId = -1;
     List<Jobs> misJobs;
-    String resultado=null;
+    String resultado = null;
 
     @Override
     public void onCreate(Bundle state) {
@@ -144,15 +144,22 @@ public class FullScannerActivity extends BaseScannerActivity implements MessageD
     public void handleResult(Result rawResult) {
         String codigo = rawResult.getContents();
         for (Jobs j : misJobs) {
+            resultado = null;
 
-            if (j.getJobCardNo().contains(codigo)) {
+            if (j.getJobCardNo().equals(codigo)) {
                 resultado = (j.getJobCardNo() + " " + j.getProjectName() + " " + j.getDeliveryDate());
+                Resultado(resultado);
                 break;
             }
         }
-        showMessageDialog("Contents = " + rawResult.getContents() + ", Format = " + rawResult.getBarcodeFormat().getName());
-    }
+            if (resultado==null){
+                showMessageDialog("Contents = " + rawResult.getContents() + ", Format = " + rawResult.getBarcodeFormat().getName());
+            }else{
+                showMessageDialog(resultado);
+            }
 
+
+    }
 
 
     public void showMessageDialog(String message) {
@@ -174,6 +181,10 @@ public class FullScannerActivity extends BaseScannerActivity implements MessageD
         if (fragment != null) {
             fragment.dismiss();
         }
+    }
+
+    private String Resultado(String resultado) {
+        return resultado;
     }
 
     @Override
